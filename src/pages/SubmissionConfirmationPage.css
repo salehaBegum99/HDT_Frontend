@@ -1,0 +1,89 @@
+.confirm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 32px 16px;
+  max-width: 480px;
+  margin: 0 auto;
+  gap: 20px;
+}
+
+.confirm__icon { font-size: 64px; }
+
+.confirm__title {
+  font-size: 26px; font-weight: 800;
+  color: #1e293b; line-height: 1.2;
+}
+
+.confirm__sub {
+  font-size: 14px; color: #64748b;
+  line-height: 1.6; max-width: 360px;
+}
+
+.confirm__id-card {
+  background: linear-gradient(135deg, #eff6ff, #f5f3ff);
+  border: 1px solid #c7d2fe;
+  border-radius: 16px;
+  padding: 20px 24px;
+  width: 100%;
+}
+.confirm__id-label {
+  font-size: 11px; color: #6366f1;
+  font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.5px; margin-bottom: 8px;
+}
+.confirm__id-value {
+  font-size: 20px; font-weight: 800;
+  color: #1e293b; margin-bottom: 8px;
+  letter-spacing: 1px;
+}
+.confirm__id-note { font-size: 12px; color: #94a3b8; }
+
+.confirm__steps {
+  background: white;
+  border: 1px solid #f1f5f9;
+  border-radius: 16px;
+  padding: 20px;
+  width: 100%;
+  text-align: left;
+}
+.confirm__steps-title {
+  font-size: 14px; font-weight: 700;
+  color: #1e293b; margin-bottom: 14px;
+}
+.confirm__step {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 8px 0;
+  border-bottom: 1px solid #f8fafc;
+  font-size: 13px; color: #64748b;
+  line-height: 1.5;
+}
+.confirm__step:last-child { border-bottom: none; }
+.confirm__step span { font-size: 18px; flex-shrink: 0; }
+
+.confirm__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  width: 100%;
+}
+.confirm__btn {
+  width: 100%; padding: 14px;
+  border-radius: 14px; border: none;
+  font-size: 15px; font-weight: 700;
+  cursor: pointer; transition: all 0.15s;
+}
+.confirm__btn--primary {
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: white;
+}
+.confirm__btn--primary:hover { opacity: 0.9; }
+.confirm__btn--ghost {
+  background: white;
+  border: 1px solid #e2e8f0;
+  color: #475569;
+}
+.confirm__btn--ghost:hover { background: #f8fafc; }

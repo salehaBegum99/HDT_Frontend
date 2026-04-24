@@ -1,0 +1,69 @@
+.pay { display: flex; flex-direction: column; gap: 16px; }
+
+.pay__header { margin-bottom: 4px; }
+.pay__title { font-size: 20px; font-weight: 800; color: #1e293b; margin-bottom: 4px; }
+.pay__sub   { font-size: 13px; color: #94a3b8; }
+
+.pay__summary {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  background: linear-gradient(135deg, #eff6ff, #f5f3ff);
+  border: 1px solid #c7d2fe;
+  border-radius: 16px;
+  padding: 20px;
+}
+.pay__summary-icon {
+  width: 48px; height: 48px;
+  background: white;
+  border-radius: 14px;
+  display: flex; align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  box-shadow: 0 2px 8px rgba(79,70,229,0.12);
+}
+.pay__summary-label { font-size: 11px; color: #94a3b8; font-weight: 600; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
+.pay__summary-amount { font-size: 20px; font-weight: 800; color: #1e293b; }
+.pay__summary-count  { font-size: 18px; font-weight: 800; color: #4f46e5; }
+
+.pay__list { display: flex; flex-direction: column; gap: 10px; }
+.pay__list-title {
+  font-size: 14px; font-weight: 700;
+  color: #1e293b; margin-bottom: 4px;
+}
+
+.pay__tranche {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 14px 16px;
+  border-radius: 14px;
+  border: 1px solid;
+  background: white;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.pay__tranche--disbursed { border-color: #bbf7d0; background: #f0fdf4; }
+.pay__tranche--hold      { border-color: #fde68a; background: #fffbeb; }
+.pay__tranche--pending   { border-color: #f1f5f9; background: white; }
+
+.pay__tranche-left { display: flex; align-items: center; gap: 12px; }
+.pay__tranche-label { font-size: 14px; font-weight: 700; color: #1e293b; margin-bottom: 2px; }
+.pay__tranche-date  { font-size: 12px; color: #94a3b8; }
+.pay__tranche-right { text-align: right; }
+.pay__tranche-amount { font-size: 15px; font-weight: 800; color: #1e293b; margin-bottom: 2px; }
+.pay__tranche-status { font-size: 11px; font-weight: 600; text-transform: uppercase; }
+.pay__tranche-status--disbursed { color: #16a34a; }
+.pay__tranche-status--on_hold   { color: #d97706; }
+.pay__tranche-status--pending   { color: #94a3b8; }
+
+.pay__empty {
+  text-align: center;
+  padding: 48px 24px;
+  color: #94a3b8;
+  display: flex; flex-direction: column;
+  align-items: center; gap: 10px;
+  font-size: 14px; font-weight: 600;
+  background: white;
+  border: 1px solid #f1f5f9;
+  border-radius: 16px;
+}

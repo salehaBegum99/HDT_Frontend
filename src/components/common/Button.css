@@ -1,0 +1,100 @@
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  font-family: var(--font-sans);
+  font-weight: 600;
+  border: none;
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: all var(--transition-base);
+  white-space: nowrap;
+  outline: none;
+  position: relative;
+  letter-spacing: 0.01em;
+}
+
+/* Sizes */
+.btn--sm {
+  padding: 8px 16px;
+  font-size: var(--text-sm);
+  border-radius: var(--radius-sm);
+}
+.btn--md {
+  padding: 13px 24px;
+  font-size: var(--text-base);
+}
+.btn--lg {
+  padding: 16px 32px;
+  font-size: var(--text-lg);
+}
+
+/* Full width */
+.btn--full {
+  width: 100%;
+}
+
+/* Primary */
+.btn--primary {
+  background-color: var(--color-primary);
+  color: var(--color-white);
+  box-shadow: 0 2px 8px rgba(26, 110, 245, 0.35);
+}
+.btn--primary:hover:not(.btn--disabled) {
+  background-color: var(--color-primary-dark);
+  box-shadow: 0 4px 14px rgba(26, 110, 245, 0.45);
+  transform: translateY(-1px);
+}
+.btn--primary:active:not(.btn--disabled) {
+  transform: translateY(0);
+}
+
+/* Secondary / Outline */
+.btn--secondary {
+  background-color: var(--color-white);
+  color: var(--color-gray-700);
+  border: 1.5px solid var(--color-gray-300);
+  box-shadow: var(--shadow-sm);
+}
+.btn--secondary:hover:not(.btn--disabled) {
+  background-color: var(--color-gray-50);
+  border-color: var(--color-gray-400);
+}
+
+/* Ghost */
+.btn--ghost {
+  background-color: transparent;
+  color: var(--color-primary);
+  border: 1.5px solid var(--color-primary);
+}
+.btn--ghost:hover:not(.btn--disabled) {
+  background-color: var(--color-primary-light);
+}
+
+/* Danger */
+.btn--danger {
+  background-color: transparent;
+  color: var(--color-danger);
+  border: 1.5px solid var(--color-danger);
+}
+.btn--danger:hover:not(.btn--disabled) {
+  background-color: var(--color-danger-light);
+}
+
+/* Disabled */
+.btn--disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Spinner */
+.btn__spinner {
+  animation: spin 0.8s linear infinite;
+}
+
+@keyframes spin {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}

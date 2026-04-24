@@ -1,0 +1,87 @@
+.prof { display: flex; flex-direction: column; gap: 16px; }
+
+.prof__hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 28px 20px;
+  background: white;
+  border: 1px solid #f1f5f9;
+  border-radius: 20px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.prof__avatar {
+  width: 72px; height: 72px;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #4f46e5, #7c3aed);
+  color: white;
+  font-size: 22px; font-weight: 800;
+  display: flex; align-items: center;
+  justify-content: center;
+  margin-bottom: 14px;
+}
+.prof__name {
+  font-size: 20px; font-weight: 800;
+  color: #1e293b; margin-bottom: 8px;
+}
+.prof__role-badge {
+  background: #eff6ff;
+  color: #2563eb;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 12px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: 0.5px;
+}
+
+.prof__card {
+  background: white;
+  border: 1px solid #f1f5f9;
+  border-radius: 16px;
+  padding: 18px;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.prof__card-title {
+  font-size: 13px; font-weight: 700;
+  color: #4f46e5; text-transform: uppercase;
+  letter-spacing: 0.5px;
+  margin-bottom: 16px;
+  padding-bottom: 12px;
+  border-bottom: 1px solid #f1f5f9;
+}
+
+.prof__info-row {
+  display: flex;
+  align-items: flex-start;
+  gap: 12px;
+  padding: 10px 0;
+  border-bottom: 1px solid #f8fafc;
+}
+.prof__info-row:last-child { border-bottom: none; }
+.prof__info-icon {
+  width: 32px; height: 32px;
+  border-radius: 8px;
+  background: #f8fafc;
+  display: flex; align-items: center;
+  justify-content: center;
+  color: #4f46e5; flex-shrink: 0;
+}
+.prof__info-label {
+  font-size: 11px; color: #94a3b8;
+  font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.5px; margin-bottom: 2px;
+}
+.prof__info-value { font-size: 14px; font-weight: 600; color: #1e293b; }
+
+.prof__logout {
+  width: 100%;
+  padding: 14px;
+  background: #fff1f2;
+  border: 1px solid #fecdd3;
+  border-radius: 14px;
+  color: #be123c;
+  font-size: 14px; font-weight: 700;
+  cursor: pointer;
+  transition: background 0.15s;
+  margin-top: 8px;
+}
+.prof__logout:hover { background: #fee2e2; }

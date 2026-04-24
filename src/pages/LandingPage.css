@@ -1,0 +1,103 @@
+.landing {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+/* Hero */
+.landing__hero {
+  background: linear-gradient(135deg, #4f46e5 0%, #7c3aed 100%);
+  border-radius: 20px;
+  padding: 28px 24px;
+  color: white;
+  position: relative;
+  overflow: hidden;
+}
+.landing__hero::after {
+  content: '';
+  position: absolute;
+  top: -30px; right: -30px;
+  width: 150px; height: 150px;
+  background: rgba(255,255,255,0.08);
+  border-radius: 50%;
+}
+.landing__hero-emoji {
+  font-size: 36px;
+  margin-bottom: 12px;
+}
+.landing__hero-title {
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1.3;
+  margin-bottom: 8px;
+}
+.landing__hero-title span { color: #c4b5fd; }
+.landing__hero-sub {
+  font-size: 14px;
+  color: rgba(255,255,255,0.75);
+}
+
+/* Actions */
+.landing__actions {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+.landing__action-card {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 16px;
+  background: white;
+  border: 1px solid #f1f5f9;
+  border-radius: 14px;
+  cursor: pointer;
+  transition: all 0.15s;
+  text-align: left;
+  width: 100%;
+  box-shadow: 0 1px 3px rgba(0,0,0,0.04);
+}
+.landing__action-card:hover {
+  border-color: #e0e7ff;
+  box-shadow: 0 4px 12px rgba(79,70,229,0.08);
+  transform: translateY(-1px);
+}
+.landing__action-card--primary {
+  background: linear-gradient(135deg, #eef2ff, #f5f3ff);
+  border-color: #c7d2fe;
+}
+.landing__action-icon { font-size: 28px; flex-shrink: 0; }
+.landing__action-title {
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e293b;
+  margin-bottom: 2px;
+}
+.landing__action-sub { font-size: 12px; color: #94a3b8; }
+.landing__action-arrow {
+  margin-left: auto;
+  color: #94a3b8;
+  font-size: 18px;
+  flex-shrink: 0;
+}
+
+/* Banner */
+.landing__banner {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: #fff7ed;
+  border: 1px solid #fed7aa;
+  border-radius: 12px;
+  padding: 14px 16px;
+  font-size: 13px;
+  color: #92400e;
+  line-height: 1.5;
+}
+
+@media (min-width: 640px) {
+  .landing__actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+  }
+}

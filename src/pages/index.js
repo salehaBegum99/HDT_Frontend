@@ -1,0 +1,9 @@
+export { default as LandingPage } from './LandingPage';
+export { default as PersonalDetailsPage } from './PersonalDetailsPage';
+export { default as DocumentUploadPage } from './DocumentUploadPage';
+export { default as ConsentPrivacyPage } from './ConsentPrivacyPage';
+export { default as SubmissionConfirmationPage } from './SubmissionConfirmationPage';
+export { default as DashboardPage } from './DashboardPage';
+export { default as SavedApplicationsPage } from './SavedApplicationsPage';
+export { default as NotificationsPage } from './NotificationsPage';
+export { default as PaymentStatusPage } from './PaymentStatusPage';
