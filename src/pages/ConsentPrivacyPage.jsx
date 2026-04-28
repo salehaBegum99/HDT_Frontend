@@ -4,7 +4,7 @@ import { Phone, Edit3 } from 'lucide-react';
 import { useApplication } from '../context/ApplicationContext';
 import PageLayout from '../components/layout/PageLayout';
 import Button from '../components/common/Button';
-import { submitApplication, uploadDocuments } from '../API/applicationApi';
+import { submitApplication, uploadDocuments } from '../API/ApplicationApi';
 import './ConsentPrivacyPage.css';
 
 const TERMS_TEXT = `Welcome to the HDT Scholarship System. By submitting this application, you confirm that all information provided is accurate and truthful. Submission of false information may result in disqualification. We reserve the right to verify all submitted documents and information. Your data will be kept confidential and used only for scholarship evaluation purposes.`;
