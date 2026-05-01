@@ -15,7 +15,7 @@ const ROLE_LABELS = {
   INSPECTOR:  'Inspector',
   SUPERVISOR: 'Supervisor',
   HO:         'Head Office',
-  SUPERADMIN: 'Super Admin',
+  // SUPERADMIN: 'Super Admin',
 };
 
 /* ── SVG Icons ── */
@@ -171,7 +171,7 @@ const StaffLoginPage = () => {
                       {role === 'INSPECTOR'  && 'Field verification'}
                       {role === 'SUPERVISOR' && 'Disbursement management'}
                       {role === 'HO'         && 'Application management'}
-                      {role === 'SUPERADMIN' && 'System administration'}
+                      {/* {role === 'SUPERADMIN' && 'System administration'} */}
                     </p>
                   </div>
                 );
