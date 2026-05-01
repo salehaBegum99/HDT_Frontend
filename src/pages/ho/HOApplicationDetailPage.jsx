@@ -353,7 +353,7 @@ const HOApplicationDetailPage = () => {
   <option value="">-- Select Inspector --</option>
  {/* Inspector dropdown — show area */}
 {inspectors.map((i) => (
-  <option key={i._id} value={i._id}>
+  <option key={i.id} value={i.id}>
     {i.name}{i.assignedArea ? ` — 📍 ${i.assignedArea}` : ''}
   </option>
 ))}
@@ -383,7 +383,7 @@ const HOApplicationDetailPage = () => {
               <option value="">-- Select Supervisor --</option>
               {/* Supervisor dropdown — show sponsorOrg */}
 {supervisors.map((s) => (
-  <option key={s._id} value={s._id}>
+  <option key={s.id} value={s.id}>
     {s.name}{s.sponsorOrg ? ` — 🏢 ${s.sponsorOrg}` : ''}
   </option>
 ))}

@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=Syne:wght@600;700;800&family=DM+Sans:wght@300;400;500;600&display=swap");
+
 :root {
   --sl-ink: #0b0f1a;
   --sl-ink-3: #2a3348;
@@ -14,13 +15,8 @@
   --sl-font-body: "DM Sans", sans-serif;
 }
 
-/* ── Reset for this page ── */
-.sl-root,
-.sl-root * {
-  box-sizing: border-box;
-}
+.sl-root, .sl-root * { box-sizing: border-box; }
 
-/* ── Root — fills entire viewport, no gray gaps ── */
 .sl-root {
   font-family: var(--sl-font-body);
   background: var(--sl-ink);
@@ -28,59 +24,47 @@
   min-height: 100vh;
   width: 100%;
   position: relative;
-  /* Kill any max-width from app-shell */
   max-width: 100% !important;
   margin: 0 !important;
   box-shadow: none !important;
   border-radius: 0 !important;
+  overflow-y: auto;
 }
 
-/* ── Background blobs ── */
+/* ── Background ── */
 .sl-bg-layer {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
 }
-
 .sl-blob {
   position: absolute;
   border-radius: 50%;
   filter: blur(80px);
 }
-
 .sl-blob-1 {
-  width: 600px;
-  height: 600px;
-  top: -100px;
-  right: -100px;
-  background: radial-gradient(circle, rgba(59, 130, 246, 0.1), transparent 70%);
+  width: 600px; height: 600px;
+  top: -100px; right: -100px;
+  background: radial-gradient(circle, rgba(59,130,246,0.1), transparent 70%);
 }
-
 .sl-blob-2 {
-  width: 400px;
-  height: 400px;
-  bottom: -80px;
-  left: -60px;
-  background: radial-gradient(
-    circle,
-    rgba(16, 185, 129, 0.07),
-    transparent 70%
-  );
+  width: 400px; height: 400px;
+  bottom: -80px; left: -60px;
+  background: radial-gradient(circle, rgba(16,185,129,0.07), transparent 70%);
 }
-
 .sl-bg-grid {
   position: fixed;
   inset: 0;
   z-index: 0;
   pointer-events: none;
   background-image:
-    linear-gradient(rgba(255, 255, 255, 0.025) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(255, 255, 255, 0.025) 1px, transparent 1px);
+    linear-gradient(rgba(255,255,255,0.025) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.025) 1px, transparent 1px);
   background-size: 48px 48px;
 }
 
-/* ── Page grid — always full viewport ── */
+/* ── Page grid ── */
 .sl-page {
   position: relative;
   z-index: 1;
@@ -90,9 +74,7 @@
   grid-template-columns: 1fr 500px;
 }
 
-/* ────────────────────────────────
-   LEFT PANEL
-   ──────────────────────────────── */
+/* ── LEFT PANEL ── */
 .sl-left {
   padding: 52px 60px;
   display: flex;
@@ -101,79 +83,46 @@
   border-right: 1px solid var(--sl-line);
   min-height: 100vh;
 }
-
-.sl-brand {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
-
+.sl-brand { display: flex; align-items: center; gap: 12px; }
 .sl-brand-box {
-  width: 38px;
-  height: 38px;
+  width: 38px; height: 38px;
   border-radius: 9px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: flex; align-items: center; justify-content: center;
 }
 .sl-brand-box svg {
-  width: 20px;
-  height: 20px;
-  fill: none;
-  stroke: #fff;
-  stroke-width: 2;
+  width: 20px; height: 20px;
+  fill: none; stroke: #fff; stroke-width: 2;
 }
-
 .sl-brand-text {
   font-family: var(--sl-font-display);
-  font-size: 0.85rem;
-  font-weight: 700;
-  letter-spacing: 0.06em;
-  text-transform: uppercase;
+  font-size: 0.85rem; font-weight: 700;
+  letter-spacing: 0.06em; text-transform: uppercase;
   color: var(--sl-mist);
 }
-
-.sl-left-center {
-  display: flex;
-  flex-direction: column;
-  gap: 36px;
-}
-
+.sl-left-center { display: flex; flex-direction: column; gap: 36px; }
 .sl-live-tag {
-  display: inline-flex;
-  align-items: center;
-  gap: 8px;
-  padding: 6px 16px;
-  border-radius: 100px;
-  background: rgba(255, 255, 255, 0.04);
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 6px 16px; border-radius: 100px;
+  background: rgba(255,255,255,0.04);
   border: 1px solid var(--sl-line);
-  font-size: 0.72rem;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--sl-mist);
+  font-size: 0.72rem; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--sl-mist);
   width: fit-content;
 }
-
 .sl-live-dot {
-  width: 7px;
-  height: 7px;
+  width: 7px; height: 7px;
   border-radius: 50%;
   animation: sl-pulse 2s ease infinite;
 }
-
 .sl-headline {
   font-family: var(--sl-font-display);
   font-size: clamp(2rem, 2.8vw, 3.4rem);
   font-weight: 800;
   line-height: 1.08;
   letter-spacing: -0.025em;
-  color: var(--sl-white); /* #ffffff */
+  color: var(--sl-white);
 }
-.sl-headline em {
-  font-style: normal;
-  color: var(--sl-white); /* #ffffff */
-}
-
+.sl-headline em { font-style: normal; color: var(--sl-white); }
 .sl-role-desc {
   font-size: 0.9rem;
   color: var(--sl-slate);
@@ -181,447 +130,255 @@
   max-width: 360px;
 }
 
-/* Role cards */
+/* ── Role Cards ── */
 .sl-role-grid {
   display: grid;
   grid-template-columns: 1fr 1fr;
   gap: 10px;
 }
-
 .sl-role-card {
   padding: 14px 16px;
   border-radius: 12px;
-  border: 1px solid rgba(255, 255, 255, 0.07);
-  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  background: rgba(255,255,255,0.03);
   cursor: pointer;
   transition: all 0.25s ease;
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
-.sl-role-card:hover {
-  background: rgba(255, 255, 255, 0.06);
-}
-.sl-role-card-top {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-}
+.sl-role-card:hover { background: rgba(255,255,255,0.06); }
+.sl-role-card-top { display: flex; align-items: center; gap: 8px; }
 .sl-role-pip {
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  flex-shrink: 0;
+  width: 8px; height: 8px;
+  border-radius: 50%; flex-shrink: 0;
 }
-.sl-role-card-name {
-  font-size: 0.82rem;
-  font-weight: 600;
-  color: var(--sl-white);
-}
-.sl-role-card-desc {
-  font-size: 0.72rem;
-  color: var(--sl-slate);
-  line-height: 1.4;
-}
+.sl-role-card-name { font-size: 0.82rem; font-weight: 600; color: var(--sl-white); }
+.sl-role-card-desc { font-size: 0.72rem; color: var(--sl-slate); line-height: 1.4; }
 
-.sl-role-card[data-role="Inspector"] .sl-role-pip {
-  background: var(--sl-inspector);
-}
-.sl-role-card[data-role="Supervisor"] .sl-role-pip {
-  background: var(--sl-supervisor);
-}
-.sl-role-card[data-role="Headoffice"] .sl-role-pip {
-  background: var(--sl-headoffice);
-}
-.sl-role-card[data-role="Superadmin"] .sl-role-pip {
-  background: var(--sl-superadmin);
-}
+.sl-role-card[data-role="Inspector"]  .sl-role-pip { background: var(--sl-inspector); }
+.sl-role-card[data-role="Supervisor"] .sl-role-pip { background: var(--sl-supervisor); }
+.sl-role-card[data-role="Headoffice"] .sl-role-pip { background: var(--sl-headoffice); }
+.sl-role-card[data-role="Superadmin"] .sl-role-pip { background: var(--sl-superadmin); }
 
-.sl-left-foot {
-  font-size: 0.72rem;
-  color: var(--sl-ink-3);
-}
+.sl-left-foot { font-size: 0.72rem; color: var(--sl-ink-3); }
 
-/* ────────────────────────────────
-   RIGHT PANEL
-   ──────────────────────────────── */
+/* ── RIGHT PANEL ── */
 .sl-right {
   padding: 52px 56px;
   display: flex;
   flex-direction: column;
   justify-content: center;
   gap: 28px;
-  background: rgba(255, 255, 255, 0.018);
+  background: rgba(255,255,255,0.018);
   backdrop-filter: blur(4px);
   min-height: 100vh;
   overflow-y: auto;
 }
-
-.sl-form-head {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
+.sl-form-head { display: flex; flex-direction: column; gap: 6px; }
 .sl-eyebrow {
-  font-size: 0.7rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
+  font-size: 0.7rem; font-weight: 600;
+  letter-spacing: 0.1em; text-transform: uppercase;
   transition: color 0.4s ease;
 }
-
 .sl-form-title {
   font-family: var(--sl-font-display);
-  font-size: 1.7rem;
-  font-weight: 800;
+  font-size: 1.7rem; font-weight: 800;
   letter-spacing: -0.02em;
 }
-
-.sl-form-sub {
-  font-size: 0.85rem;
-  color: var(--sl-slate);
-}
-
+.sl-form-sub { font-size: 0.85rem; color: var(--sl-slate); }
 .sl-accent-line {
-  width: 44px;
-  height: 3px;
-  border-radius: 2px;
-  margin-top: 2px;
+  width: 44px; height: 3px;
+  border-radius: 2px; margin-top: 2px;
   transition: background 0.4s ease;
 }
-
 .sl-role-badge {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  padding: 12px 14px;
-  border-radius: 10px;
-  border-width: 1px;
-  border-style: solid;
-  transition:
-    border-color 0.4s ease,
-    background 0.4s ease;
+  display: flex; align-items: center; gap: 10px;
+  padding: 12px 14px; border-radius: 10px;
+  border-width: 1px; border-style: solid;
+  transition: border-color 0.4s ease, background 0.4s ease;
 }
 .sl-role-badge-dot {
-  width: 9px;
-  height: 9px;
-  border-radius: 50%;
-  flex-shrink: 0;
+  width: 9px; height: 9px;
+  border-radius: 50%; flex-shrink: 0;
   transition: background 0.4s ease;
 }
-.sl-role-badge-name {
-  flex: 1;
-  font-size: 0.85rem;
-  font-weight: 600;
-}
-.sl-role-badge-tag {
-  font-size: 0.72rem;
-  color: var(--sl-slate);
-}
-
-.sl-form-fields {
-  display: flex;
-  flex-direction: column;
-  gap: 18px;
-}
-
-.sl-field {
-  display: flex;
-  flex-direction: column;
-  gap: 6px;
-}
-
+.sl-role-badge-name { flex: 1; font-size: 0.85rem; font-weight: 600; }
+.sl-role-badge-tag { font-size: 0.72rem; color: var(--sl-slate); }
+.sl-form-fields { display: flex; flex-direction: column; gap: 18px; }
+.sl-field { display: flex; flex-direction: column; gap: 6px; }
 .sl-field label {
-  font-size: 0.75rem;
-  font-weight: 600;
-  letter-spacing: 0.05em;
-  text-transform: uppercase;
+  font-size: 0.75rem; font-weight: 600;
+  letter-spacing: 0.05em; text-transform: uppercase;
   color: var(--sl-mist);
 }
-
-.sl-iw {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-
+.sl-iw { position: relative; display: flex; align-items: center; }
 .sl-iw input {
   width: 100%;
   padding: 13px 14px 13px 44px;
-  background: rgba(255, 255, 255, 0.05);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background: rgba(255,255,255,0.05);
+  border: 1px solid rgba(255,255,255,0.1);
   border-radius: 10px;
   font-family: var(--sl-font-body);
   font-size: 0.9rem;
   color: var(--sl-white);
   outline: none;
-  transition:
-    border-color 0.2s,
-    box-shadow 0.2s,
-    background 0.2s;
+  transition: border-color 0.2s, box-shadow 0.2s, background 0.2s;
 }
-.sl-iw input::placeholder {
-  color: var(--sl-ink-3);
-}
-
+.sl-iw input::placeholder { color: var(--sl-ink-3); }
 .sl-iw-icon {
-  position: absolute;
-  left: 14px;
-  display: flex;
-  align-items: center;
-  pointer-events: none;
-  color: var(--sl-slate);
+  position: absolute; left: 14px;
+  display: flex; align-items: center;
+  pointer-events: none; color: var(--sl-slate);
 }
 .sl-iw-icon svg {
-  width: 16px;
-  height: 16px;
-  stroke: currentColor;
-  fill: none;
-  stroke-width: 2;
+  width: 16px; height: 16px;
+  stroke: currentColor; fill: none; stroke-width: 2;
 }
-
 .sl-iw-suffix {
-  position: absolute;
-  right: 12px;
-  background: none;
-  border: none;
-  color: var(--sl-slate);
-  cursor: pointer;
-  display: flex;
-  align-items: center;
-  padding: 2px;
-  transition: color 0.2s;
+  position: absolute; right: 12px;
+  background: none; border: none;
+  color: var(--sl-slate); cursor: pointer;
+  display: flex; align-items: center;
+  padding: 2px; transition: color 0.2s;
 }
-.sl-iw-suffix:hover {
-  color: var(--sl-white);
-}
+.sl-iw-suffix:hover { color: var(--sl-white); }
 .sl-iw-suffix svg {
-  width: 16px;
-  height: 16px;
-  stroke: currentColor;
-  fill: none;
-  stroke-width: 2;
+  width: 16px; height: 16px;
+  stroke: currentColor; fill: none; stroke-width: 2;
 }
-
-.sl-field-foot {
-  display: flex;
-  justify-content: flex-end;
-  margin-top: -4px;
-}
-.sl-field-foot a {
-  font-size: 0.78rem;
-  text-decoration: none;
-  transition: color 0.2s;
-}
-
+.sl-field-foot { display: flex; justify-content: flex-end; margin-top: -4px; }
+.sl-field-foot a { font-size: 0.78rem; text-decoration: none; transition: color 0.2s; }
 .sl-err-box {
-  display: none;
-  font-size: 0.78rem;
-  color: #f87171;
-  padding: 10px 14px;
-  border-radius: 8px;
-  background: rgba(248, 113, 113, 0.08);
-  border: 1px solid rgba(248, 113, 113, 0.2);
+  display: none; font-size: 0.78rem; color: #f87171;
+  padding: 10px 14px; border-radius: 8px;
+  background: rgba(248,113,113,0.08);
+  border: 1px solid rgba(248,113,113,0.2);
 }
-.sl-err-box.show {
-  display: block;
-}
+.sl-err-box.show { display: block; }
 .sl-err-box.success {
   color: #34d399;
-  background: rgba(52, 211, 153, 0.07);
-  border-color: rgba(52, 211, 153, 0.2);
+  background: rgba(52,211,153,0.07);
+  border-color: rgba(52,211,153,0.2);
 }
-
 .sl-btn-go {
-  width: 100%;
-  padding: 14px;
-  border: none;
+  width: 100%; padding: 14px; border: none;
   border-radius: 10px;
   font-family: var(--sl-font-display);
-  font-size: 0.95rem;
-  font-weight: 700;
-  letter-spacing: 0.02em;
-  color: var(--sl-white);
-  cursor: pointer;
-  position: relative;
-  overflow: hidden;
-  transition:
-    background 0.4s ease,
-    transform 0.15s ease,
-    box-shadow 0.3s ease;
+  font-size: 0.95rem; font-weight: 700;
+  letter-spacing: 0.02em; color: var(--sl-white);
+  cursor: pointer; position: relative; overflow: hidden;
+  transition: background 0.4s ease, transform 0.15s ease, box-shadow 0.3s ease;
 }
 .sl-btn-go::after {
   content: "";
-  position: absolute;
-  inset: 0;
-  background: linear-gradient(135deg, rgba(255, 255, 255, 0.14), transparent);
-  opacity: 0;
-  transition: opacity 0.2s;
+  position: absolute; inset: 0;
+  background: linear-gradient(135deg, rgba(255,255,255,0.14), transparent);
+  opacity: 0; transition: opacity 0.2s;
 }
-.sl-btn-go:hover::after {
-  opacity: 1;
-}
-.sl-btn-go:hover {
-  transform: translateY(-1px);
-}
-.sl-btn-go:active {
-  transform: translateY(0);
-}
-.sl-btn-go:disabled {
-  opacity: 0.5;
-  cursor: not-allowed;
-  transform: none;
-}
-
+.sl-btn-go:hover::after { opacity: 1; }
+.sl-btn-go:hover { transform: translateY(-1px); }
+.sl-btn-go:active { transform: translateY(0); }
+.sl-btn-go:disabled { opacity: 0.5; cursor: not-allowed; transform: none; }
 .sl-divider {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-  font-size: 0.72rem;
-  color: var(--sl-ink-3);
+  display: flex; align-items: center; gap: 12px;
+  font-size: 0.72rem; color: var(--sl-ink-3);
 }
-.sl-divider::before,
-.sl-divider::after {
-  content: "";
-  flex: 1;
-  height: 1px;
+.sl-divider::before, .sl-divider::after {
+  content: ""; flex: 1; height: 1px;
   background: var(--sl-line);
 }
-
-.sl-applicant-cta {
-  text-align: center;
-  font-size: 0.8rem;
-  color: var(--sl-slate);
-}
-.sl-applicant-cta a {
-  font-weight: 600;
-  text-decoration: none;
-  transition: color 0.3s;
-}
-.sl-applicant-cta a:hover {
-  text-decoration: underline;
-}
+.sl-applicant-cta { text-align: center; font-size: 0.8rem; color: var(--sl-slate); }
+.sl-applicant-cta a { font-weight: 600; text-decoration: none; transition: color 0.2s; }
+.sl-applicant-cta a:hover { text-decoration: underline; }
 
 /* ── Animations ── */
 @keyframes sl-pulse {
-  0%,
-  100% {
-    opacity: 1;
-    transform: scale(1);
-  }
-  50% {
-    opacity: 0.4;
-    transform: scale(0.75);
-  }
+  0%, 100% { opacity: 1; transform: scale(1); }
+  50% { opacity: 0.4; transform: scale(0.75); }
 }
-
 .sl-fu {
   opacity: 0;
   transform: translateY(16px);
   animation: sl-fadeUp 0.5s ease forwards;
 }
 @keyframes sl-fadeUp {
-  to {
-    opacity: 1;
-    transform: translateY(0);
-  }
+  to { opacity: 1; transform: translateY(0); }
 }
+.sl-d1 { animation-delay: 0.05s; }
+.sl-d2 { animation-delay: 0.1s; }
+.sl-d3 { animation-delay: 0.16s; }
+.sl-d4 { animation-delay: 0.22s; }
+.sl-d5 { animation-delay: 0.28s; }
+.sl-d6 { animation-delay: 0.34s; }
 
-.sl-d1 {
-  animation-delay: 0.05s;
-}
-.sl-d2 {
-  animation-delay: 0.1s;
-}
-.sl-d3 {
-  animation-delay: 0.16s;
-}
-.sl-d4 {
-  animation-delay: 0.22s;
-}
-.sl-d5 {
-  animation-delay: 0.28s;
-}
-.sl-d6 {
-  animation-delay: 0.34s;
-}
-
-/* ════════════════════════════════
-   RESPONSIVE BREAKPOINTS
-   ════════════════════════════════ */
-
-/* Tablet landscape */
+/* ════════════════════
+   TABLET
+   ════════════════════ */
 @media (min-width: 769px) and (max-width: 1100px) {
-  .sl-page {
-    grid-template-columns: 1fr 420px;
-  }
-  .sl-left {
-    padding: 40px 36px;
-  }
-  .sl-right {
-    padding: 40px 36px;
-    gap: 20px;
-  }
-  .sl-headline {
-    font-size: 2.2rem;
-  }
+  .sl-page { grid-template-columns: 1fr 420px; }
+  .sl-left { padding: 40px 36px; }
+  .sl-right { padding: 40px 36px; gap: 20px; }
+  .sl-headline { font-size: 2.2rem; }
 }
 
-/* Mobile — single column, hide left */
+/* ════════════════════
+   MOBILE
+   ════════════════════ */
 @media (max-width: 768px) {
-  html,
-  body {
-    width: 100%;
-    overflow-x: hidden;
-  }
+  html, body { width: 100%; overflow-x: hidden; }
 
+  /* Single column — hide left panel */
   .sl-page {
     grid-template-columns: 1fr;
     min-height: 100vh;
   }
+  .sl-left { display: none; }
 
-  .sl-left {
-    display: none;
-  }
-
+  /* Right panel full width */
   .sl-right {
     padding: 48px 24px 56px;
     min-height: 100vh;
     justify-content: flex-start;
     gap: 20px;
-    /* show the dark ink background so it matches the brand */
     background: var(--sl-ink);
   }
 
-  /* Mini top brand bar on mobile */
+  /* Mini brand bar on mobile */
   .sl-right::before {
     content: "⬡  HDT Staff Portal";
-    display: block;
     font-family: var(--sl-font-display);
-    font-size: 0.85rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    text-transform: uppercase;
+    font-size: 0.85rem; font-weight: 700;
+    letter-spacing: 0.06em; text-transform: uppercase;
     color: var(--sl-mist);
     margin-bottom: 8px;
     padding-bottom: 20px;
     border-bottom: 1px solid var(--sl-line);
   }
 
-  .sl-form-title {
-    font-size: 1.5rem;
-  }
+  .sl-form-title { font-size: 1.5rem; }
 
-  /* Role grid: 2 cols on mobile still works, but shrink padding */
+  /* ✅ Role grid — 2 columns on mobile */
   .sl-role-grid {
     grid-template-columns: 1fr 1fr;
     gap: 8px;
   }
-  .sl-role-card {
-    padding: 10px 12px;
-  }
-  .sl-role-card-desc {
-    display: none;
-  } /* hide description on small screens */
+
+  /* ✅ Smaller role cards */
+  .sl-role-card { padding: 10px 12px; }
+  .sl-role-card-name { font-size: 0.78rem; }
+  .sl-role-card-desc { display: none; }
+
+  /* ✅ Prevent iOS font zoom */
+  .sl-iw input { font-size: 16px; }
+}
+
+/* ════════════════════
+   VERY SMALL (< 380px)
+   ════════════════════ */
+@media (max-width: 380px) {
+  .sl-right { padding: 32px 16px 40px; }
+
+  /* Stack role cards on very small screens */
+  .sl-role-grid { grid-template-columns: 1fr; }
 }

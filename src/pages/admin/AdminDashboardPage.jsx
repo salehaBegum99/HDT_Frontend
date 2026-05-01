@@ -5,6 +5,14 @@ import API from '../../API/axios';
 const AdminDashboardPage = () => {
   const [stats, setStats] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [showCreateModal, setShowCreateModal] = useState(false);
+  const [createForm, setCreateForm] = useState({
+    name: '', email: '', mobile: '', password: '', role: 'INSPECTOR',
+    assignedArea: '', sponsorOrg: ''
+  });
+  const [createLoading, setCreateLoading] = useState(false);
+  const [createError, setCreateError] = useState('');
+  const [createSuccess, setCreateSuccess] = useState('');
 
   useEffect(() => {
     const fetchStats = async () => {
@@ -62,11 +70,131 @@ const AdminDashboardPage = () => {
           Quick Actions
         </h3>
         <div style={{ display: 'flex', gap: '12px', flexWrap: 'wrap' }}>
-          <a href="/admin/users"        className="adm-btn adm-btn--primary">+ Create User</a>
+          <button className="adm-btn adm-btn--primary"
+            onClick={() => {
+              setShowCreateModal(true);
+              setCreateError('');
+              setCreateSuccess('');
+            }}>
+            + Create User
+          </button>
           <a href="/admin/applications" className="adm-btn adm-btn--ghost">View Applications</a>
           <a href="/admin/settings"     className="adm-btn adm-btn--ghost">System Settings</a>
         </div>
       </div>
+
+      {showCreateModal && (
+        <div className="adm-modal-overlay">
+          <div className="adm-modal" style={{ width: '100%', maxWidth: '520px' }}>
+            <div className="adm-modal-head">
+              <h3 className="adm-modal-title">Create Staff User</h3>
+              <button className="adm-modal-close"
+                onClick={() => {
+                  setShowCreateModal(false);
+                  setCreateForm({
+                    name: '', email: '', mobile: '', password: '', role: 'INSPECTOR',
+                    assignedArea: '', sponsorOrg: ''
+                  });
+                }}>×
+              </button>
+            </div>
+
+            <form onSubmit={async (e) => {
+                e.preventDefault();
+                setCreateError('');
+                setCreateSuccess('');
+                setCreateLoading(true);
+                try {
+                  await API.post('/superadmin/users', createForm);
+                  setCreateSuccess('User created!');
+                  setCreateForm({
+                    name: '', email: '', mobile: '', password: '', role: 'INSPECTOR',
+                    assignedArea: '', sponsorOrg: ''
+                  });
+                  setShowCreateModal(false);
+                } catch (err) {
+                  setCreateError(err?.response?.data?.message || 'Failed to create user.');
+                } finally {
+                  setCreateLoading(false);
+                }
+              }}
+              style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
+
+              {[
+                { label: 'Full Name', name: 'name',   type: 'text', placeholder: 'e.g. Rahul Sharma' },
+                { label: 'Email',     name: 'email',  type: 'email', placeholder: 'staff@hdt.com' },
+                { label: 'Mobile',    name: 'mobile', type: 'tel', placeholder: '10 digit number' },
+                { label: 'Password',  name: 'password', type: 'password', placeholder: 'Enter a secure password' },
+              ].map((field) => (
+                <div key={field.name}>
+                  <label className="adm-label">{field.label}</label>
+                  <input className="adm-input" type={field.type}
+                    placeholder={field.placeholder}
+                    value={createForm[field.name]}
+                    onChange={(e) => setCreateForm({ ...createForm, [field.name]: e.target.value })}
+                    required
+                  />
+                </div>
+              ))}
+
+              <div>
+                <label className="adm-label">Role</label>
+                <select className="adm-input"
+                  value={createForm.role}
+                  onChange={(e) => setCreateForm({
+                    ...createForm,
+                    role: e.target.value,
+                    assignedArea: '',
+                    sponsorOrg: ''
+                  })}>
+                  <option value="INSPECTOR">Inspector</option>
+                  <option value="SUPERVISOR">Supervisor</option>
+                  <option value="HO">Head Office</option>
+                </select>
+              </div>
+
+              {createForm.role === 'INSPECTOR' && (
+                <div>
+                  <label className="adm-label">Assigned Area</label>
+                  <input
+                    className="adm-input"
+                    type="text"
+                    placeholder="e.g. Mehdipatnam, Hyderabad"
+                    value={createForm.assignedArea}
+                    onChange={(e) => setCreateForm({ ...createForm, assignedArea: e.target.value })}
+                  />
+                </div>
+              )}
+
+              {createForm.role === 'SUPERVISOR' && (
+                <div>
+                  <label className="adm-label">Sponsor / Organisation</label>
+                  <input
+                    className="adm-input"
+                    type="text"
+                    placeholder="e.g. HDT Foundation, Zakat Foundation"
+                    value={createForm.sponsorOrg}
+                    onChange={(e) => setCreateForm({ ...createForm, sponsorOrg: e.target.value })}
+                  />
+                </div>
+              )}
+
+              {createError && (
+                <p style={{ color: '#ef4444', fontSize: '13px' }}>{createError}</p>
+              )}
+              {createSuccess && (
+                <p style={{ color: '#10b981', fontSize: '13px' }}>{createSuccess}</p>
+              )}
+
+              <button type="submit" className="adm-btn adm-btn--primary"
+                style={{ width: '100%', justifyContent: 'center', padding: '11px' }}
+                disabled={createLoading}>
+                {createLoading ? 'Creating...' : 'Create User'}
+              </button>
+            </form>
+          </div>
+        </div>
+      )}
     </AdminLayout>
   );
 };

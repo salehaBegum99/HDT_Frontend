@@ -74,7 +74,7 @@ const AdminApplicationsPage = () => {
               ) : applications.length === 0 ? (
                 <tr><td colSpan={6} style={{ textAlign: 'center', color: '#64748b' }}>No applications found</td></tr>
               ) : applications.map((app) => (
-                <tr key={app._id}>
+                <tr key={app.id}>
                   <td style={{ color: '#ef4444', fontWeight: 500, fontSize: '12px' }}>
                     {app.applicationDisplayId || '—'}
                   </td>

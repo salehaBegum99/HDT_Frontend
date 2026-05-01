@@ -77,8 +77,8 @@ const InspectorApplicationsPage = () => {
                   No applications found
                 </td></tr>
               ) : applications.map((app) => (
-                <tr key={app._id}
-                  onClick={() => navigate(`/inspector/applications/${app._id}`)}>
+                <tr key={app.id}
+                  onClick={() => navigate(`/inspector/applications/${app.id}`)}>
                   <td style={{ color: '#f59e0b', fontWeight: 600, fontSize: '12px' }}>
                     {app.applicationDisplayId || app.candidateId}
                   </td>

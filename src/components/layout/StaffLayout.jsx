@@ -172,6 +172,7 @@ const StaffLayout = ({ children, title, role }) => {
         <main className="sl-content">{children}</main>
       </div>
     </div>
+    
   );
 };
 

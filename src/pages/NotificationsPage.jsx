@@ -37,7 +37,7 @@ const NotificationsPage = () => {
   const handleMarkRead = async (id, link) => {
     await markNotificationRead(id);
     setNotifications((prev) =>
-      prev.map((n) => n._id === id ? { ...n, isRead: true } : n)
+      prev.map((n) => n.id === id ? { ...n, isRead: true } : n)
     );
     setUnreadCount((prev) => Math.max(0, prev - 1));
     if (link) navigate(link);
@@ -102,9 +102,9 @@ const NotificationsPage = () => {
               const { icon: Icon, color, bg } = iconMap[n.type] || iconMap.GENERAL;
               return (
                 <div
-                  key={n._id}
+                  key={n.id}
                   className={`notif__item ${!n.isRead ? 'notif__item--unread' : ''}`}
-                  onClick={() => handleMarkRead(n._id, n.link)}
+                  onClick={() => handleMarkRead(n.id, n.link)}
                 >
                   <div className="notif__item-icon" style={{ background: bg, color }}>
                     <Icon size={18} />

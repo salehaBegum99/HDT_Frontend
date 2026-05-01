@@ -8,12 +8,13 @@ const UserManagementPage = () => {
   const [filterRole, setFilterRole]     = useState('');
   const [showModal, setShowModal]       = useState(false);
   const [createForm, setCreateForm]     = useState({
-    name: '', email: '', mobile: '', role: 'INSPECTOR',
+    name: '', email: '', mobile: '', password: '', role: 'INSPECTOR',
     assignedArea: '', sponsorOrg: ''
   });
   const [createLoading, setCreateLoading] = useState(false);
   const [createError, setCreateError]     = useState('');
   const [createSuccess, setCreateSuccess] = useState('');
+  const [createdCredentials, setCreatedCredentials] = useState(null);
 
   const fetchUsers = async () => {
     setLoading(true);
@@ -50,36 +51,54 @@ const UserManagementPage = () => {
     }
   };
 
-  const handleResetPassword = async (userId) => {
-    if (!window.confirm('Reset password for this user?')) return;
-    try {
-      await API.patch(`/superadmin/users/${userId}/reset-password`);
-      alert('Password reset! New credentials sent via email.');
-    } catch (err) {
-      alert(err?.response?.data?.message || 'Error');
-    }
-  };
+  // const handleResetPassword = async (userId) => {
+  //   if (!window.confirm('Reset password for this user?')) return;
+  //   try {
+  //     await API.patch(`/superadmin/users/${userId}/reset-password`);
+  //     alert('Password reset!');
+  //   } catch (err) {
+  //     alert(err?.response?.data?.message || 'Error');
+  //   }
+  // };
 
-  const handleCreate = async (e) => {
-    e.preventDefault();
-    setCreateError('');
-    setCreateSuccess('');
-    setCreateLoading(true);
-    try {
-      await API.post('/admin/create-user', createForm);
-      setCreateSuccess('User created! Credentials sent via email ✅');
-      setCreateForm({
-        name: '', email: '', mobile: '', role: 'INSPECTOR',
-        assignedArea: '', sponsorOrg: ''
-      });
-      fetchUsers();
-    } catch (err) {
-      setCreateError(err?.response?.data?.message || 'Failed to create user.');
-    } finally {
-      setCreateLoading(false);
-    }
-  };
+ const handleCreate = async (e) => {
+  e.preventDefault();
+  setCreateError('');
+  setCreateSuccess('');
+  setCreateLoading(true);
 
+  try {
+    const res = await API.post('/admin/create-user', createForm);
+
+    // ✅ Use password from form (since backend doesn't return it)
+    setCreatedCredentials({
+      name:   res.data.user.name,
+      email:  res.data.user.email,
+      mobile: res.data.user.mobile,
+      role:   res.data.user.role,
+      password: createForm.password, // ✅ FIXED
+    });
+
+    // Reset form
+    setCreateForm({
+      name: '',
+      email: '',
+      mobile: '',
+      password: '', // ✅ keep consistent
+      role: 'INSPECTOR',
+      assignedArea: '',
+      sponsorOrg: ''
+    });
+
+    setShowModal(false);
+    fetchUsers();
+
+  } catch (err) {
+    setCreateError(err?.response?.data?.message || 'Failed to create user.');
+  } finally {
+    setCreateLoading(false);
+  }
+};
   const roleBadgeClass = (role) => {
     const map = {
       INSPECTOR:  'adm-badge--yellow',
@@ -115,7 +134,133 @@ const UserManagementPage = () => {
           }}>
           + Create User
         </button>
+ 
+
       </div>
+     {/* ── CREDENTIALS POPUP ── */}
+{createdCredentials && (
+  <div className="adm-modal-overlay">
+    <div className="adm-modal" style={{ maxWidth: '420px' }}>
+
+      {/* Header */}
+      <div style={{
+        textAlign: 'center',
+        marginBottom: '20px',
+      }}>
+        <div style={{
+          fontSize: '40px', marginBottom: '12px'
+        }}>🎉</div>
+        <h3 style={{ color: '#f1f5f9', fontSize: '18px', marginBottom: '4px' }}>
+          User Created Successfully!
+        </h3>
+        <p style={{ color: '#64748b', fontSize: '13px' }}>
+          Please save these credentials — they won't be shown again!
+        </p>
+      </div>
+
+      {/* Warning Banner */}
+      <div style={{
+        background: 'rgba(245,158,11,0.1)',
+        border: '1px solid rgba(245,158,11,0.3)',
+        borderRadius: '10px',
+        padding: '10px 14px',
+        marginBottom: '16px',
+        display: 'flex',
+        alignItems: 'center',
+        gap: '8px',
+        fontSize: '12px',
+        color: '#f59e0b',
+        fontWeight: 600,
+      }}>
+        ⚠️ Copy and share these credentials with the user immediately
+      </div>
+
+      {/* Credentials Box */}
+      <div style={{
+        background: '#0f1117',
+        border: '1px solid #1e2535',
+        borderRadius: '10px',
+        padding: '16px',
+        marginBottom: '16px',
+        display: 'flex',
+        flexDirection: 'column',
+        gap: '12px',
+      }}>
+        {[
+          { label: 'Name',     value: createdCredentials.name },
+          { label: 'Role',     value: createdCredentials.role },
+          { label: 'Email',    value: createdCredentials.email },
+          { label: 'Mobile',   value: createdCredentials.mobile },
+          { label: 'Password', value: createdCredentials.password, highlight: true },
+        ].map((item) => (
+          <div key={item.label} style={{
+            display: 'flex',
+            justifyContent: 'space-between',
+            alignItems: 'center',
+            gap: '12px',
+          }}>
+            <span style={{
+              color: '#64748b',
+              fontSize: '12px',
+              fontWeight: 600,
+              textTransform: 'uppercase',
+              letterSpacing: '0.5px',
+              flexShrink: 0,
+            }}>
+              {item.label}
+            </span>
+            <span style={{
+              color: item.highlight ? '#10b981' : '#f1f5f9',
+              fontSize: '13px',
+              fontWeight: item.highlight ? 700 : 500,
+              fontFamily: item.highlight ? 'monospace' : 'inherit',
+              background: item.highlight ? 'rgba(16,185,129,0.1)' : 'transparent',
+              padding: item.highlight ? '2px 8px' : '0',
+              borderRadius: item.highlight ? '6px' : '0',
+              wordBreak: 'break-all',
+              textAlign: 'right',
+            }}>
+              {item.value}
+            </span>
+          </div>
+        ))}
+      </div>
+
+      {/* Copy All Button */}
+      <button
+        className="adm-btn adm-btn--ghost"
+        style={{ width: '100%', justifyContent: 'center', marginBottom: '10px' }}
+        onClick={() => {
+          const text = `
+HDT Scholarship Portal — Staff Credentials
+==========================================
+Name:     ${createdCredentials.name}
+Role:     ${createdCredentials.role}
+Email:    ${createdCredentials.email}
+Mobile:   ${createdCredentials.mobile}
+Password: ${createdCredentials.password}
+==========================================
+Login URL: ${window.location.origin}/staff/login
+          `.trim();
+          navigator.clipboard.writeText(text);
+          alert('Credentials copied to clipboard! ✅');
+        }}
+      >
+        📋 Copy All Credentials
+      </button>
+
+      {/* Close Button */}
+      <button
+        className="adm-btn adm-btn--primary"
+        style={{ width: '100%', justifyContent: 'center' }}
+        onClick={() => setCreatedCredentials(null)}
+      >
+        ✅ I've Saved the Credentials
+      </button>
+
+    </div>
+  </div>
+)}
 
       {/* Filter Tabs */}
       <div style={{ display: 'flex', gap: '8px', flexWrap: 'wrap', marginBottom: '16px' }}>
@@ -165,7 +310,7 @@ const UserManagementPage = () => {
                   </td>
                 </tr>
               ) : users.map((u) => (
-                <tr key={u._id}>
+                <tr key={u.id}>
                   <td style={{ color: '#f1f5f9', fontWeight: 600 }}>{u.name}</td>
                   <td style={{ color: '#94a3b8' }}>{u.email}</td>
                   <td style={{ color: '#94a3b8' }}>{u.mobile}</td>
@@ -211,7 +356,7 @@ const UserManagementPage = () => {
                         <>
                           {u.isActive ? (
                             <button className="adm-btn adm-btn--ghost adm-btn--sm"
-                              onClick={() => handleDeactivate(u._id)}>
+                              onClick={() => handleDeactivate(u.id)}>
                               Deactivate
                             </button>
                           ) : (
@@ -219,14 +364,14 @@ const UserManagementPage = () => {
                               style={{ background: 'rgba(16,185,129,0.12)',
                                 color: '#10b981',
                                 border: '1px solid rgba(16,185,129,0.3)' }}
-                              onClick={() => handleReactivate(u._id)}>
+                              onClick={() => handleReactivate(u.id)}>
                               Reactivate
                             </button>
                           )}
-                          <button className="adm-btn adm-btn--ghost adm-btn--sm"
+                          {/* <button className="adm-btn adm-btn--ghost adm-btn--sm"
                             onClick={() => handleResetPassword(u._id)}>
                             Reset Pwd
-                          </button>
+                          </button> */}
                         </>
                       )}
                     </div>
@@ -248,7 +393,7 @@ const UserManagementPage = () => {
                 onClick={() => {
                   setShowModal(false);
                   setCreateForm({
-                    name: '', email: '', mobile: '', role: 'INSPECTOR',
+                    name: '', email: '', mobile: '', password: '', role: 'INSPECTOR',
                     assignedArea: '', sponsorOrg: ''
                   });
                 }}>×
@@ -258,7 +403,7 @@ const UserManagementPage = () => {
             <form onSubmit={handleCreate}
               style={{ display: 'flex', flexDirection: 'column', gap: '16px' }}>
 
-              {/* Name, Email, Mobile */}
+              {/* Name, Email, Mobile, Password */}
               {[
                 { label: 'Full Name', name: 'name',   type: 'text',
                   placeholder: 'e.g. Rahul Sharma' },
@@ -266,6 +411,8 @@ const UserManagementPage = () => {
                   placeholder: 'staff@hdt.com' },
                 { label: 'Mobile',    name: 'mobile', type: 'tel',
                   placeholder: '10 digit number' },
+                { label: 'Password',  name: 'password', type: 'password',
+                  placeholder: 'Enter a secure password' },
               ].map((f) => (
                 <div key={f.name}>
                   <label className="adm-label">{f.label}</label>

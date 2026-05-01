@@ -95,7 +95,7 @@ const HOApplicationsPage = () => {
                   No applications found
                 </td></tr>
               ) : applications.map((app) => (
-                <tr key={app._id} onClick={() => navigate(`/headoffice/applications/${app._id}`)}>
+                <tr key={app.id} onClick={() => navigate(`/headoffice/applications/${app.id}`)}>
                   <td style={{ color: '#3b82f6', fontWeight: 600, fontSize: '12px' }}>
                     {app.applicationDisplayId || '—'}
                   </td>

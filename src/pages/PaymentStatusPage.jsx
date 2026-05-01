@@ -15,8 +15,8 @@ const PaymentStatusPage = () => {
         const appRes = await API.get('/applications/my-application');
         const app = appRes.data.application;
         setApplication(app);
-        if (app?._id) {
-          const tRes = await API.get(`/supervisor/${app._id}/tranches`);
+        if (app?.id) {
+          const tRes = await API.get(`/supervisor/${app.id}/tranches`);
           setTranches(tRes.data.tranches || []);
         }
       } catch (err) {
@@ -90,7 +90,7 @@ const PaymentStatusPage = () => {
           <div className="pay__list">
             <h3 className="pay__list-title">Disbursement History</h3>
             {tranches.map((t, i) => (
-              <div key={t._id} className={`pay__tranche ${statusClass(t.status)}`}>
+              <div key={t.id} className={`pay__tranche ${statusClass(t.status)}`}>
                 <div className="pay__tranche-left">
                   {statusIcon(t.status)}
                   <div>

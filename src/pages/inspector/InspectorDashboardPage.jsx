@@ -72,8 +72,8 @@ const InspectorDashboardPage = () => {
               </thead>
               <tbody>
                 {applications.slice(0, 5).map((app) => (
-                  <tr key={app._id}
-                    onClick={() => navigate(`/inspector/applications/${app._id}`)}>
+                  <tr key={app.id}
+                    onClick={() => navigate(`/inspector/applications/${app.id}`)}>
                     <td style={{ color: '#f59e0b', fontSize: '12px', fontWeight: 600 }}>
                       {app.applicationDisplayId || app.candidateId}
                     </td>
